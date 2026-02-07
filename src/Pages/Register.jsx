@@ -20,66 +20,63 @@ const Register = () => {
 
   // --- MULTI-FORM CONFIGURATION ---
 
+  // Common Google Form Configuration for ALL Workshops
+  const COMMON_FORM_CONFIG = {
+    actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeAY_DQZajjRFcpuXYxXyv3ZvrNRS3AfwVrxd70rHr2JPCmwg/formResponse",
+    fields: {
+      NAME: "entry.1573953420",
+      EMAIL: "entry.1828436597",
+      PHONE: "entry.718941675",
+      BRANCH: "entry.500464337",
+      YEAR: "entry.989911391",
+      COLLEGE: "entry.1991804511",
+      WORKSHOP: "entry.1789172296",
+      UTR: "entry.284114100"
+    }
+  };
+
   // Define configuration for EACH workshop.
   // Keys must match the values in your "Select Workshop" dropdown exactly.
   const WORKSHOP_FORMS = {
     "Junoon": {
-      actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdgaSKSLJxDpxSz-9yQJ82VSJhMs2pBGAmsBng3n7M8mlvbDQ/formResponse",
+      ...COMMON_FORM_CONFIG,
       fee: "₹ 149",
       qrCode: placeholderQr,
-      fields: {
-        NAME: "entry.912035739",
-        EMAIL: "entry.605828181",
-        PHONE: "entry.308491493",
-        BRANCH: "entry.900388843",
-        YEAR: "entry.1283716368",
-        COLLEGE: "entry.2055956794",
-        // TYPE: "entry.xxx", // Form does not have this field
-        WORKSHOP: "entry.457607281",
-        // UTR: "entry.xxx" // Form does not have this field yet!
-      }
     },
     "Generative AI": {
-      actionUrl: "YOUR_GOOGLE_FORM_ACTION_URL_FOR_GENAI",
+      ...COMMON_FORM_CONFIG,
       fee: "₹ 199",
       qrCode: placeholderQr,
-      fields: { /* IDs */ }
     },
     "AIML": {
-      actionUrl: "YOUR_GOOGLE_FORM_ACTION_URL_FOR_AIML",
+      ...COMMON_FORM_CONFIG,
       fee: "₹ 149",
       qrCode: placeholderQr,
-      fields: { /* IDs */ }
     },
     "Mastering LaTeX: Type Smart, Not Hard": {
-      actionUrl: "YOUR_GOOGLE_FORM_ACTION_URL_FOR_LATEX",
+      ...COMMON_FORM_CONFIG,
       fee: "₹ 99",
       qrCode: placeholderQr,
-      fields: { /* IDs */ }
     },
     "Video Editing": {
-      actionUrl: "YOUR_GOOGLE_FORM_ACTION_URL_FOR_VIDEOEDIT",
+      ...COMMON_FORM_CONFIG,
       fee: "₹ 149",
       qrCode: placeholderQr,
-      fields: { /* IDs */ }
     },
     "Cloud Byte": {
-      actionUrl: "YOUR_GOOGLE_FORM_ACTION_URL_FOR_CLOUDBYTE",
+      ...COMMON_FORM_CONFIG,
       fee: "₹ 149",
       qrCode: placeholderQr,
-      fields: { /* IDs */ }
     },
     "Electric Vehicle": {
-      actionUrl: "YOUR_GOOGLE_FORM_ACTION_URL_FOR_EV",
+      ...COMMON_FORM_CONFIG,
       fee: "₹ 249",
       qrCode: placeholderQr,
-      fields: { /* IDs */ }
     },
     "AIML Bootcamp": {
-      actionUrl: "YOUR_GOOGLE_FORM_ACTION_URL_FOR_AIMLBOOTCAMP",
+      ...COMMON_FORM_CONFIG,
       fee: "₹ 499",
       qrCode: placeholderQr,
-      fields: { /* IDs */ }
     },
     // Fallback/Default if needed
     "DEFAULT": {
@@ -100,8 +97,7 @@ const Register = () => {
     college: "",
     type: "Workshop",
     workshop: selectedWorkshop,
-    utr: "",
-    paymentProof: null
+    utr: ""
   });
 
   // Helper to get current configuration
@@ -114,9 +110,7 @@ const Register = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({ ...prev, paymentProof: e.target.files[0] }));
-  };
+
 
   // --- EMAIL JS CONFIGURATION ---
   // Credentials provided by user
@@ -156,101 +150,78 @@ const Register = () => {
 
     // 1. Determine which config to use based on selected workshop
     const config = WORKSHOP_FORMS[formData.workshop] || WORKSHOP_FORMS["DEFAULT"];
-
-    let isDemoMode = false;
-    let submitUrl = config?.actionUrl || "";
+    const submitUrl = config?.actionUrl || "";
 
     // Check if configuration is missing or uses placeholders
     if (!config || !submitUrl || submitUrl.includes("YOUR_GOOGLE_FORM")) {
       const confirmDemo = window.confirm(
         `Configuration missing for ${formData.workshop}.\n\nDo you want to run a DEMO submission to test the Email & UI flow?`
       );
-
-      if (confirmDemo) {
-        isDemoMode = true;
-      } else {
-        return;
-      }
+      if (!confirmDemo) return;
     }
 
-    // Google Forms Transformation/Validation Logic (Skip if Demo)
-    if (!isDemoMode) {
-      // Check for common mistakes
-      if (submitUrl.includes("forms.gle")) {
-        alert("Error: You are using a short link (forms.gle)...");
-        return;
-      }
+    // --- FORM SUBMISSION (Background Fetch) ---
+    // Submits data directly to Google Forms without redirecting the user.
+    // IMPORTANT: For this to work, the Google Form MUST be Public (Log-in not required).
 
-      if (submitUrl.endsWith("/viewform")) {
-        submitUrl = submitUrl.replace("/viewform", "/formResponse");
-      }
 
-      // Check if it ends in formResponse, if not just warn
-      if (!submitUrl.endsWith("formResponse")) {
-        // simple warning, continue
-      }
-    }
 
-    // --- FORM SUBMISSION (Real or Mock) ---
-
-    if (!isDemoMode) {
-      // Create a hidden iframe to prevent redirection
-      const iframeId = 'hidden_iframe_' + Date.now();
-      const iframe = document.createElement('iframe');
-      iframe.name = iframeId;
-      iframe.id = iframeId;
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-
-      const form = document.createElement('form');
-      form.action = submitUrl;
-      form.method = 'POST';
-      form.target = iframeId;
-
-      const addField = (name, value) => {
-        if (name) {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = name;
-          input.value = value;
-          form.appendChild(input);
-        }
-      };
-
-      // Map form data to the specific Entry IDs for this workshop
-      const fids = config.fields;
-
-      if (fids) {
-        addField(fids.NAME, formData.name);
-        addField(fids.EMAIL, formData.email);
-        addField(fids.PHONE, formData.phone);
-        addField(fids.BRANCH, formData.branch);
-        addField(fids.YEAR, formData.year);
-        addField(fids.COLLEGE, formData.college);
-        addField(fids.TYPE, formData.type);
-        addField(fids.WORKSHOP, formData.workshop);
-        if (fids.UTR) addField(fids.UTR, formData.utr);
-      }
-
-      document.body.appendChild(form);
-      form.submit();
-
-      // Cleanup DOM elements after a delay
-      setTimeout(() => {
-        document.body.removeChild(form);
-        setTimeout(() => document.body.removeChild(iframe), 2000);
-      }, 500);
-    }
-
-    // Send visual feedback and email (Run for both Demo and Real)
-    // We use a slight delay to simulate network or wait for iframe
-    setTimeout(() => {
+    const handleSuccess = () => {
       // Trigger Email Sending
       sendConfirmationEmail(formData);
 
-      alert(`Registration Submitted Successfully for ${formData.workshop}! ${isDemoMode ? '(DEMO MODE)' : ''}\n\nCheck your email for confirmation.`);
+      alert(`Registration Submitted Successfully for ${formData.workshop}!\n\nCheck your email for confirmation.`);
       navigate("/workshops");
-    }, 1000);
+    };
+
+    const fids = config.fields;
+    const formPayload = new URLSearchParams();
+
+    // Map Workshop Names to Google Form Options (EXACT MATCH REQUIRED)
+    // Based on your screenshot:
+    const workshopMapping = {
+      "Junoon": "JUNNON", // Matches typo in Google Form screenshot
+      "Generative AI": "GENERATIVE AI",
+      "AIML": "AIML",
+      "Mastering LaTeX: Type Smart, Not Hard": "MASTERING LaTeX: Type Smart, Not Hard",
+      "Video Editing": "VIDEO EDITING",
+      "Cloud Byte": "CLOUD BYTE",
+      "Electric Vehicle": "ELECTRIC VEHICLE",
+      "AIML Bootcamp": "AIML BOOTCAMP"
+    };
+
+    const googleFormWorkshopValue = workshopMapping[formData.workshop] || formData.workshop.toUpperCase();
+
+    if (fids) {
+      if (fids.NAME) formPayload.append(fids.NAME, formData.name);
+      if (fids.EMAIL) formPayload.append(fids.EMAIL, formData.email);
+      if (fids.PHONE) formPayload.append(fids.PHONE, formData.phone);
+      if (fids.BRANCH) formPayload.append(fids.BRANCH, formData.branch);
+      if (fids.YEAR) formPayload.append(fids.YEAR, formData.year); // Ensure select options match "1ST YEAR" etc.
+      if (fids.COLLEGE) formPayload.append(fids.COLLEGE, formData.college);
+      if (fids.TYPE) formPayload.append(fids.TYPE, formData.type);
+      if (fids.WORKSHOP) formPayload.append(fids.WORKSHOP, googleFormWorkshopValue);
+      if (fids.UTR) formPayload.append(fids.UTR, formData.utr);
+    }
+
+    // Use fetch with no-cors mode to bypass CORS policies
+    fetch(submitUrl, {
+      method: "POST",
+      mode: "no-cors",
+      body: formPayload,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+      .then(() => {
+        console.log("Form submitted via fetch (no-cors).");
+        handleSuccess();
+      })
+      .catch((err) => {
+        console.error("Form submission error:", err);
+        alert("Network error. Submitting via email only.");
+        handleSuccess(); // Fallback to at least send the email/navigate
+      });
   };
 
   return (
@@ -347,10 +318,10 @@ const Register = () => {
                   required
                 >
                   <option value="">Select Year</option>
-                  <option value="1">1st Year</option>
-                  <option value="2">2nd Year</option>
-                  <option value="3">3rd Year</option>
-                  <option value="4">4th Year</option>
+                  <option value="1ST YEAR">1st Year</option>
+                  <option value="2ND YEAR">2nd Year</option>
+                  <option value="3RD YEAR">3rd Year</option>
+                  <option value="4TH YEAR">4th Year</option>
                 </select>
               </div>
               <div className="form-group">
@@ -421,15 +392,7 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label className="auth-label">Payment Proof</label>
-                <input
-                  type="file"
-                  className="auth-input auth-file-input"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
-              </div>
+
             </div>
 
             <label className="terms-label">

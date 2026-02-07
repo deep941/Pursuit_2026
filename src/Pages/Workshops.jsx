@@ -19,7 +19,7 @@ const Workshops = () => {
     { name: "Junoon", image: Junoon },
     { name: "Generative AI", image: GenAI },
     { name: "AIML", image: AIML },
-    { name: "Mastering LaTeX", image: Latex },
+    { name: "Mastering LaTeX: Type Smart, Not Hard", image: Latex },
     { name: "Video Editing", image: VideoEditing },
     { name: "Cloud Byte", image: CloudByte },
     { name: "Electric Vehicle", image: EV },
