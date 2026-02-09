@@ -109,7 +109,7 @@ const ChatBot = () => {
 
         // Sponsors
         if (lowerInput.includes("sponsor")) {
-            return "We are proudly supported by TechNova, CodeCraft, CloudCore, DataSphere, and others. Check the Sponsors page for the full list!";
+            return "We are proudly supported by TechNova, CodeCraft, CloudCore, DataSphere, and others.";
         }
 
         // Default Fallback

@@ -3,7 +3,7 @@ import {
   FaInfoCircle,
   FaUserFriends,
   FaImages,
-  FaHandshake,
+
   FaUsers,
 } from "react-icons/fa";
 import "../styles/sidebar.css";
@@ -24,9 +24,7 @@ const Sidebar = () => {
       <NavLink to="/gallery">
         <SidebarItem icon={<FaImages />} label="Gallery" />
       </NavLink>
-      <NavLink to="/sponser">
-        <SidebarItem icon={<FaHandshake />} label="Sponsors" />
-      </NavLink>
+
       <NavLink to="/coreteam">
         <SidebarItem icon={<FaUsers />} label="Core Team" />
       </NavLink>

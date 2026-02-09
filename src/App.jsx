@@ -10,7 +10,7 @@ import Accomodation from "./Pages/Accomodation";
 
 import Workshops from "./Pages/Workshops";
 import Speakers from "./Pages/Speakers";
-import Sponsers from "./Pages/Sponsers";
+
 import ContactUs from "./Pages/ConstactUs";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
@@ -43,7 +43,7 @@ function App() {
 
               <Route path="/workshops" element={<Workshops />} />
               <Route path="/speakers" element={<Speakers />} />
-              <Route path="/sponser" element={<Sponsers />} />
+
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/coreteam" element={<CoreTeam />} />
             </Route>
