@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/gallery.css";
 import "../styles/events.css";
@@ -11,9 +12,17 @@ import Cyber from "../assets/Events/CYBER.png";
 import Latex from "../assets/Events/LATEX.png";
 import VLSI from "../assets/Events/VLSI.png";
 import EV from "../assets/Events/EV.png";
+import Web from "../assets/Events/web.png";
+import Autodesk from "../assets/Events/AUTODESK.png";
+import TechBackground from "../assets/Technical events background (1).png";
 
 const Workshops = () => {
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(true);
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
 
   const workshopList = [
     { name: "Cloud Byte", image: Cloud, fee: "₹ 49" },
@@ -23,6 +32,8 @@ const Workshops = () => {
     { name: "Introduction to Agentic Ai", image: AI, fee: "₹ 100" },
     { name: "Electric Vehicle Workshop", image: EV, fee: "₹ 150" },
     { name: "Cybersecurity Workshop", image: Cyber, fee: "₹ 50" },
+    { name: "Web Development Workshop", image: Web, fee: "₹ 100" },
+    { name: "Autodesk Workshop", image: Autodesk, fee: "₹ 100" }
   ];
 
   const handleWorkshopClick = (workshopName) => {
@@ -31,6 +42,14 @@ const Workshops = () => {
 
   return (
     <section className="gallery-section">
+      {showPopup && (
+        <div className="popup-overlay" onClick={closePopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <button className="popup-close-btn" onClick={closePopup}>X</button>
+            <img src={TechBackground} alt="Technical Events Details" className="popup-image" />
+          </div>
+        </div>
+      )}
       <video
         className="gallery-bg-video"
         src={bgVideo}

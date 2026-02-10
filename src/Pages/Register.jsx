@@ -83,6 +83,16 @@ const Register = () => {
       fee: "₹ 49",
       qrCode: Qr49, // Updated
     },
+    "Web Development Workshop": {
+      ...COMMON_FORM_CONFIG,
+      fee: "₹ 100",
+      qrCode: Qr100,
+    },
+    "Autodesk Workshop": {
+      ...COMMON_FORM_CONFIG,
+      fee: "₹ 100", // Placeholder if not provided
+      qrCode: Qr100,
+    },
     // Fallback/Default if needed
     "DEFAULT": {
       actionUrl: "",
@@ -362,6 +372,8 @@ const Register = () => {
                   <option value="Electric Vehicle Workshop">Electric Vehicle Workshop</option>
                   <option value="Cybersecurity Workshop">Cybersecurity Workshop</option>
                   <option value="Cloud Byte">Cloud Byte</option>
+                  <option value="Web Development Workshop">Web Development Workshop</option>
+                  <option value="Autodesk Workshop">Autodesk Workshop</option>
                 </select>
               </div>
             </div>

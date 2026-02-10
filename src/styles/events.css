@@ -205,6 +205,79 @@
 }
 
 
+/* --- POPUP STYLES --- */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  /* Dark semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  /* Ensure it's on top of everything */
+  padding: 20px;
+}
+
+.popup-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+  background: transparent;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(139, 108, 255, 0.3);
+  /* Subtle glow */
+  animation: popupFadeIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+.popup-close-btn {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.popup-close-btn:hover {
+  transform: scale(1.1);
+  background: #ff6b81;
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Responsive */
 @media (min-height: 900px) {
 
