@@ -10,7 +10,6 @@ import bgVideo from "../assets/bgpursuit.webm";
 
 // --- ASSET IMPORTS ---
 import Qr100 from "../assets/qr/100.jpeg";
-import Qr49 from "../assets/qr/49.png";
 import Qr50 from "../assets/qr/50.jpeg";
 import Qr150 from "../assets/qr/150.jpeg";
 const placeholderQr = null;
@@ -80,13 +79,13 @@ const Register = () => {
     },
     "Cloud Byte": {
       ...COMMON_FORM_CONFIG,
-      fee: "₹ 49",
-      qrCode: Qr49, // Updated
+      fee: "₹ 50",
+      qrCode: Qr50, // Updated
     },
     "Web Development Workshop": {
       ...COMMON_FORM_CONFIG,
-      fee: "₹ 100",
-      qrCode: Qr100,
+      fee: "₹ 50",
+      qrCode: Qr50,
     },
     "Autodesk Workshop": {
       ...COMMON_FORM_CONFIG,
@@ -114,6 +113,7 @@ const Register = () => {
     workshop: selectedWorkshop,
     utr: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Helper to get current configuration
   const currentConfig = WORKSHOP_FORMS[formData.workshop] || WORKSHOP_FORMS["DEFAULT"];
@@ -163,6 +163,9 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     const config = WORKSHOP_FORMS[formData.workshop] || WORKSHOP_FORMS["DEFAULT"];
 
     const backendApiUrl = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/register` : "http://localhost:5000/api/register";
@@ -211,6 +214,7 @@ const Register = () => {
       .catch((err) => {
         console.error("Database submission error:", err);
         alert(`Error: ${err.message}. \n\nCheck your backend console for more details.`);
+        setIsSubmitting(false);
         // Note: For actual production, you might not want to call handleSuccess on failure.
       });
   };
@@ -395,8 +399,8 @@ const Register = () => {
               <span>I agree to the terms and conditions</span>
             </label>
 
-            <button type="submit" className="auth-button primary">
-              Complete Registration
+            <button type="submit" className="auth-button primary" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Complete Registration"}
             </button>
 
           </form>

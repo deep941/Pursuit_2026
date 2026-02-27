@@ -11,11 +11,12 @@ import NakulDeshmukh from "../assets/speakers/Nakul Deshmukh.png";
 import RiyaDangra from "../assets/speakers/Riya Dangra.jpeg";
 import PranavKheldar from "../assets/speakers/Pranav Kheldar.jpg";
 import ChetanTajane from "../assets/speakers/Mr. Chetan Tajane.png";
-
+import DeveshBadgujar from "../assets/speakers/DEVESH BADGUJAR.png";
 const speakers = [
   { name: "Mr. Yogesh P Murumkar", title: "CEO & Corporate Trainer, Bharat Software Solutions", image: YogeshMurumkar },
   { name: "Mr. Nakul Deshmukh", title: "Founder iBase Electrosoft LLP", image: NakulDeshmukh },
   { name: "Mr. Amit Molke", title: "SAP Associate in Bristlecone", image: AmitMolke },
+  { name: "Mr. Devesh Badgujar", title: "DE Intern @ Coditation | Full-Stack Developer | AI/ML & Real-Time Systems Developer | Founder StockNotify", image: DeveshBadgujar },
   { name: "Miss. Riya Dangra", title: "Software engineer in apexa iQ", image: RiyaDangra },
   { name: "Mr. Pranav Kheldar", title: "Alumni of SSGMCE", image: PranavKheldar },
   { name: "Mr. Chetan Tajane", title: "Founder, CIATS (Centre of Innovation and Advance Technical Skills)", image: ChetanTajane },
