@@ -2,6 +2,50 @@ import React from "react";
 import "../styles/schedule.css";
 import bgVideo from "../assets/bgpursuit.webm";
 
+const scheduleData = [
+    {
+        day: "Day 1",
+        date: "Wednesday, March 25",
+        events: [
+            { time: "09:00 AM - 01:00 PM", title: "AL/ML Bootcamp (CSESA)", venue: "DBMS Lab", details: "Day 1 • 1 hr lunch" },
+            { time: "11:00 AM - 02:30 PM", title: "AUTODESK REVIT (IEI_MECH)", venue: "AI-ML Lab", details: "Day 1 • 30 min break" }
+        ]
+    },
+    {
+        day: "Day 2",
+        date: "Thursday, March 26",
+        events: [
+            { time: "09:00 AM - 01:00 PM", title: "AL/ML Bootcamp (CSESA)", venue: "DBMS Lab", details: "Day 2 • 1 hr lunch" },
+            { time: "11:00 AM - 02:30 PM", title: "AUTODESK REVIT (IEI_MECH)", venue: "AI-ML Lab", details: "Day 2 • 30 min break" }
+        ]
+    },
+    {
+        day: "Day 3",
+        date: "Friday, March 27",
+        events: [
+            { time: "08:00 AM - 01:00 PM", title: "AUTODESK REVIT (IEI_MECH)", venue: "AI-ML Lab", details: "Day 3 • 1 hr lunch" },
+            { time: "09:00 AM - 03:00 PM", title: "Electric Vehicle (IEI_ELPO)", venue: "Swadhyay Kaksha", details: "Day 1 • 1 hr lunch" },
+            { time: "09:00 AM - 02:00 PM", title: "Cloud Byte (Mozilla Open-Source)", venue: "Web Tech Lab", details: "1 hr lunch" },
+            { time: "09:00 AM - 01:00 PM", title: "AL/ML Bootcamp (CSESA)", venue: "DBMS Lab", details: "Day 3 • 1 hr lunch" },
+            { time: "02:30 PM - 07:00 PM", title: "Cybersecurity Workshop (ITSA)", venue: "Web Tech Lab", details: "30 min break" },
+            { time: "02:30 PM - 07:00 PM", title: "Web Development (E-CELL)", venue: "AI-ML Lab", details: "Day 1 • 30 min break" },
+            { time: "03:30 PM - 07:00 PM", title: "Mastering LaTeX (ISTE)", venue: "Swadhyay Kaksha", details: "Day 1 • 30 min break" }
+        ]
+    },
+    {
+        day: "Day 4",
+        date: "Saturday, March 28",
+        events: [
+            { time: "08:00 AM - 02:00 PM", title: "Electric Vehicle (IEI_ELPO)", venue: "Swadhyay Kaksha", details: "Day 2 • 1 hr lunch" },
+            { time: "09:00 AM - 03:00 PM", title: "Introduction to VLSI (ESSA)", venue: "Cadence Lab", details: "1 hr lunch" },
+            { time: "09:00 AM - 01:00 PM", title: "Web Development (E-CELL)", venue: "AI-ML Lab", details: "Day 2 • 1 hr break" },
+            { time: "10:00 AM - 03:00 PM", title: "Introduction to Agentic AI (ACM)", venue: "Web Tech Lab", details: "1 hr lunch" },
+            { time: "02:00 PM - 06:00 PM", title: "AUTODESK REVIT (IEI_MECH)", venue: "AI-ML Lab", details: "Day 4 • 30 min break" },
+            { time: "03:00 PM - 06:30 PM", title: "Mastering LaTeX (ISTE)", venue: "Swadhyay Kaksha", details: "Day 2 • 30 min break" }
+        ]
+    }
+];
+
 const Schedule = () => {
     return (
         <>
@@ -14,425 +58,36 @@ const Schedule = () => {
                     <p className="schedule-subtitle">Pursuit 2026 • March 25 - 28</p>
                 </header>
 
-                {/* Day 1 */}
-                <div className="day-schedule">
-                    <div className="day-header">
-                        <h2 className="day-title">Day 1</h2>
-                        <span className="day-date">Wednesday, March 25</span>
-                    </div>
+                <div className="schedule-list">
+                    {scheduleData.map((dayObj, idx) => (
+                        <div key={idx} className="day-schedule-block">
+                            <div className="day-header">
+                                <h2 className="day-title">{dayObj.day}</h2>
+                                <span className="day-date">{dayObj.date}</span>
+                            </div>
 
-                    {/* Desktop View */}
-                    <table className="schedule-table desktop-view">
-                        <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Track A</th>
-                                <th>Track B</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>09:00 AM - 01:00 PM</td>
-                                <td className="track-cell track-a">
-                                    <span className="workshop-name">AI/ML Bootcamp</span>
-                                    <span className="workshop-time">DBMS Lab • 4 Hours</span>
-                                </td>
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Electric Vehicle</span>
-                                    <span className="workshop-time">Swadhyay Kaksha • 4 Hours</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>02:00 PM - 03:00 PM</td>
-                                <td className="track-cell track-a" rowSpan="2">
-                                    <span className="workshop-name">Introduction to Agentic AI</span>
-                                    <span className="workshop-time">Web Tech Lab • 4 Hours</span>
-                                </td>
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Electric Vehicle</span>
-                                    <span className="workshop-time">Swadhyay Kaksha • 1 Hour (Contd.)</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>03:00 PM - 06:00 PM</td>
-                                {/* Track A continues above */}
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Mastering LaTeX</span>
-                                    <span className="workshop-time">Swadhyay Kaksh • 3 Hours</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    {/* Mobile View */}
-                    <div className="mobile-view">
-                        <div className="schedule-card">
-                            <div className="time-slot">09:00 AM - 01:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">AI/ML Bootcamp</span>
-                                    <span className="workshop-time">DBMS Lab</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Electric Vehicle</span>
-                                    <span className="workshop-time">Swadhyay Kaksha</span>
-                                </div>
+                            <div className="events-grid">
+                                {dayObj.events.map((evt, eIdx) => (
+                                    <div key={eIdx} className="event-card">
+                                        <div className="event-time">
+                                            <span role="img" aria-label="time">🕒</span> {evt.time}
+                                        </div>
+                                        <h3 className="event-title">
+                                            {evt.title}
+                                        </h3>
+                                        <div className="event-venue">
+                                            <span role="img" aria-label="venue">📍</span> {evt.venue}
+                                        </div>
+                                        {evt.details && (
+                                            <div className="event-details">
+                                                <span role="img" aria-label="details">ℹ️</span> {evt.details}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">02:00 PM - 03:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Intro to Agentic AI</span>
-                                    <span className="workshop-time">Web Tech Lab</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Electric Vehicle (Contd.)</span>
-                                    <span className="workshop-time">Swadhyay Kaksha</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">03:00 PM - 06:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Intro to Agentic AI (Contd.)</span>
-                                    <span className="workshop-time">Web Tech Lab</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Mastering LaTeX</span>
-                                    <span className="workshop-time">Swadhyay Kaksh</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Day 2 */}
-                <div className="day-schedule">
-                    <div className="day-header">
-                        <h2 className="day-title">Day 2</h2>
-                        <span className="day-date">Thursday, March 26</span>
-                    </div>
-
-                    <table className="schedule-table desktop-view">
-                        <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Track A</th>
-                                <th>Track B</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>09:00 AM - 01:00 PM</td>
-                                <td className="track-cell track-a">
-                                    <span className="workshop-name">AI/ML Bootcamp</span>
-                                    <span className="workshop-time">DBMS Lab • 4 Hours</span>
-                                </td>
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Electric Vehicle</span>
-                                    <span className="workshop-time">Swadhyay Kaksha • 4 Hours</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>02:00 PM - 03:00 PM</td>
-                                <td className="track-cell track-a" rowSpan="2">
-                                    <span className="workshop-name">Cybersecurity Workshop</span>
-                                    <span className="workshop-time">Web Tech Lab • 4 Hours</span>
-                                </td>
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Electric Vehicle</span>
-                                    <span className="workshop-time">Swadhyay Kaksha • 1 Hour (Contd.)</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>03:00 PM - 06:00 PM</td>
-                                {/* Track A continues above */}
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Mastering LaTeX</span>
-                                    <span className="workshop-time">Swadhyay Kaksh • 3 Hours</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    {/* Mobile View */}
-                    <div className="mobile-view">
-                        <div className="schedule-card">
-                            <div className="time-slot">09:00 AM - 01:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">AI/ML Bootcamp</span>
-                                    <span className="workshop-time">DBMS Lab</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Electric Vehicle</span>
-                                    <span className="workshop-time">Swadhyay Kaksha</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">02:00 PM - 03:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Cybersecurity Workshop</span>
-                                    <span className="workshop-time">Web Tech Lab</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Electric Vehicle (Contd.)</span>
-                                    <span className="workshop-time">Swadhyay Kaksha</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">03:00 PM - 06:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Cybersecurity (Contd.)</span>
-                                    <span className="workshop-time">Web Tech Lab</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Mastering LaTeX</span>
-                                    <span className="workshop-time">Swadhyay Kaksh</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Day 3 */}
-                <div className="day-schedule">
-                    <div className="day-header">
-                        <h2 className="day-title">Day 3</h2>
-                        <span className="day-date">Friday, March 27</span>
-                    </div>
-
-                    <table className="schedule-table desktop-view">
-                        <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Track A</th>
-                                <th>Track B</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>09:00 AM - 01:00 PM</td>
-                                <td className="track-cell track-a">
-                                    <span className="workshop-name">AI/ML Bootcamp</span>
-                                    <span className="workshop-time">DBMS Lab • 4 Hours</span>
-                                </td>
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Intro to VLSI</span>
-                                    <span className="workshop-time">Cadence Lab • 4 Hours</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>02:00 PM - 03:00 PM</td>
-                                <td className="track-cell track-a" rowSpan="2">
-                                    <span className="workshop-name">Cloud Byte Workshop</span>
-                                    <span className="workshop-time">Web Tech Lab, I.T. Dept. • 4 Hours</span>
-                                </td>
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Intro to VLSI</span>
-                                    <span className="workshop-time">Cadence Lab • 1 Hour (Contd.)</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>03:00 PM - 06:00 PM</td>
-                                {/* Track A continues above */}
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Web Development</span>
-                                    <span className="workshop-time">DBMS Lab • 3 Hours</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    {/* Mobile View */}
-                    <div className="mobile-view">
-                        <div className="schedule-card">
-                            <div className="time-slot">09:00 AM - 01:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">AI/ML Bootcamp</span>
-                                    <span className="workshop-time">DBMS Lab</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Intro to VLSI</span>
-                                    <span className="workshop-time">Cadence Lab</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">02:00 PM - 03:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Cloud Byte Workshop</span>
-                                    <span className="workshop-time">Web Tech Lab, I.T. Dept.</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Intro to VLSI (Contd.)</span>
-                                    <span className="workshop-time">Cadence Lab</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">03:00 PM - 06:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Cloud Byte (Contd.)</span>
-                                    <span className="workshop-time">Web Tech Lab</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Web Development</span>
-                                    <span className="workshop-time">DBMS Lab</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Day 4 */}
-                <div className="day-schedule">
-                    <div className="day-header">
-                        <h2 className="day-title">Day 4</h2>
-                        <span className="day-date">Saturday, March 28</span>
-                    </div>
-
-                    <table className="schedule-table desktop-view">
-                        <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Track A</th>
-                                <th>Track B</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>09:00 AM - 01:00 PM</td>
-                                <td className="track-cell track-a">
-                                    <span className="workshop-name">Autodesk Revit</span>
-                                    <span className="workshop-time">Swadhyay Kaksha • 4 Hours</span>
-                                </td>
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Intro to VLSI</span>
-                                    <span className="workshop-time">Cadence Lab • 4 Hours</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>02:00 PM - 03:00 PM</td>
-                                <td className="track-cell track-a">
-                                    <span className="workshop-name">Autodesk Revit</span>
-                                    <span className="workshop-time">Swadhyay Kaksha • 1 Hour</span>
-                                </td>
-                                <td className="track-cell track-b">
-                                    <span className="workshop-name">Intro to VLSI</span>
-                                    <span className="workshop-time">Cadence Lab • 1 Hour (Contd.)</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>03:00 PM - 04:00 PM</td>
-                                <td className="track-cell track-a">
-                                    <span className="workshop-name">Autodesk Revit</span>
-                                    <span className="workshop-time">Swadhyay Kaksha • 1 Hour (Final)</span>
-                                </td>
-                                <td className="track-cell track-b" rowSpan="2">
-                                    <span className="workshop-name">Web Development</span>
-                                    <span className="workshop-time">DBMS Lab • 3 Hours</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>04:00 PM - 06:00 PM</td>
-                                <td className="track-cell track-a" style={{ opacity: 0.5, fontStyle: "italic" }}>
-                                    <span>Buffer Slots / Networking</span>
-                                </td>
-                                {/* Track B Web Dev continues */}
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    {/* Mobile View */}
-                    <div className="mobile-view">
-                        <div className="schedule-card">
-                            <div className="time-slot">09:00 AM - 01:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Autodesk Revit</span>
-                                    <span className="workshop-time">Swadhyay Kaksha</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Intro to VLSI</span>
-                                    <span className="workshop-time">Cadence Lab</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">02:00 PM - 03:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Autodesk Revit</span>
-                                    <span className="workshop-time">Swadhyay Kaksha</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Intro to VLSI (Contd.)</span>
-                                    <span className="workshop-time">Cadence Lab</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">03:00 PM - 04:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name">Autodesk Revit (Final)</span>
-                                    <span className="workshop-time">Swadhyay Kaksha</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Web Development</span>
-                                    <span className="workshop-time">DBMS Lab</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="schedule-card">
-                            <div className="time-slot">04:00 PM - 06:00 PM</div>
-                            <div className="track-group">
-                                <div className="track-item track-a">
-                                    <span className="track-label">Track A:</span>
-                                    <span className="workshop-name" style={{ fontStyle: "italic", opacity: 0.8 }}>Buffer / Networking</span>
-                                </div>
-                                <div className="track-item track-b">
-                                    <span className="track-label">Track B:</span>
-                                    <span className="workshop-name">Web Development (Contd.)</span>
-                                    <span className="workshop-time">DBMS Lab</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </>

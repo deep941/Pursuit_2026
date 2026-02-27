@@ -10,6 +10,7 @@ import Gallery from "./Pages/Gallery";
 import Accomodation from "./Pages/Accomodation";
 
 import Workshops from "./Pages/Workshops";
+import WorkshopDetail from "./Pages/WorkshopDetail";
 import Speakers from "./Pages/Speakers";
 
 import ContactUs from "./Pages/ConstactUs";
@@ -56,6 +57,7 @@ function App() {
               <Route path="/accomodation" element={<Accomodation />} />
 
               <Route path="/workshops" element={<Workshops />} />
+              <Route path="/workshops/:id" element={<WorkshopDetail />} />
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/speakers" element={<Speakers />} />
 

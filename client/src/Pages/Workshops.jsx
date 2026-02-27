@@ -25,19 +25,19 @@ const Workshops = () => {
   };
 
   const workshopList = [
-    { name: "Cloud Byte", image: Cloud, fee: "₹ 49" },
-    { name: "Mastering LaTeX:Type Smart, Not Hard", image: Latex, fee: "Free" },
-    { name: "AI/ML Bootcamp", image: AIML, fee: "₹ 100" },
-    { name: "Introduction to VLSI and Its Applications", image: VLSI, fee: "₹ 100" },
-    { name: "Introduction to Agentic Ai", image: AI, fee: "₹ 100" },
-    { name: "Electric Vehicle Workshop", image: EV, fee: "₹ 150" },
-    { name: "Cybersecurity Workshop", image: Cyber, fee: "₹ 50" },
-    { name: "Web Development Workshop", image: Web, fee: "₹ 100" },
-    { name: "Autodesk Workshop", image: Autodesk, fee: "₹ 100" }
+    { id: "cloud-byte", name: "Cloud Byte", image: Cloud, fee: "₹ 49" },
+    { id: "mastering-latex", name: "Mastering LaTeX:Type Smart, Not Hard", image: Latex, fee: "Free" },
+    { id: "ai-ml-bootcamp", name: "AI/ML Bootcamp", image: AIML, fee: "₹ 100" },
+    { id: "vlsi-applications", name: "Introduction to VLSI and Its Applications", image: VLSI, fee: "₹ 100" },
+    { id: "agentic-ai", name: "Introduction to Agentic Ai", image: AI, fee: "₹ 100" },
+    { id: "electric-vehicle", name: "Electric Vehicle Workshop", image: EV, fee: "₹ 150" },
+    { id: "cybersecurity", name: "Cybersecurity Workshop", image: Cyber, fee: "₹ 50" },
+    { id: "web-development", name: "Web Development Workshop", image: Web, fee: "₹ 100" },
+    { id: "autodesk", name: "Autodesk Workshop", image: Autodesk, fee: "₹ 100" }
   ];
 
-  const handleWorkshopClick = (workshopName) => {
-    navigate("/register", { state: { workshop: workshopName } });
+  const handleWorkshopClick = (workshopId) => {
+    navigate(`/workshops/${workshopId}`);
   };
 
   return (
@@ -69,12 +69,12 @@ const Workshops = () => {
             <div
               className="event-card"
               key={index}
-              onClick={() => handleWorkshopClick(workshop.name)}
+              onClick={() => handleWorkshopClick(workshop.id)}
               style={{ cursor: "pointer" }}
             >
               <img src={workshop.image} alt={workshop.name} className="event-poster" />
               <div className="event-fee">{workshop.fee}</div>
-              <button className="register-btn">Register Now</button>
+              <button className="register-btn">Explore</button>
             </div>
           ))}
         </div>
