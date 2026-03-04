@@ -9,9 +9,9 @@ import "../styles/register-full.css"; // New extended styles
 import bgVideo from "../assets/bgpursuit.webm";
 
 // --- ASSET IMPORTS ---
-import Qr100 from "../assets/qr/100.jpeg";
-import Qr50 from "../assets/qr/50.jpeg";
-import Qr150 from "../assets/qr/150.jpeg";
+import Qr100 from "../assets/qr/qr100.jpeg";
+import Qr50 from "../assets/qr/qr50.jpeg";
+import Qr150 from "../assets/qr/qr150.jpeg";
 const placeholderQr = null;
 // ---------------------
 
@@ -79,13 +79,13 @@ const Register = () => {
     },
     "Cloud Byte": {
       ...COMMON_FORM_CONFIG,
-      fee: "₹ 50",
-      qrCode: Qr50, // Updated
+      fee: "₹ 49",
+      qrCode: Qr50, // Updated to match 49 (using 50 QR)
     },
     "Web Development Workshop": {
       ...COMMON_FORM_CONFIG,
-      fee: "₹ 50",
-      qrCode: Qr50,
+      fee: "₹ 100",
+      qrCode: Qr100,
     },
     "Autodesk Workshop": {
       ...COMMON_FORM_CONFIG,
