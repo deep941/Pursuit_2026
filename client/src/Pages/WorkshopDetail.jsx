@@ -12,8 +12,8 @@ const workshopData = {
         date: "Friday, March 27",
         schedule: "Registration starts at 8:30 AM, followed by basics of Cloud Setup, Lunch Break (1 hr), and Hands-on Cloud Deployments.",
         fee: "₹ 49",
-        resourcePerson: "Cloud Specialists & Open-Source Contributors",
-        coordinator: "Contact: +91-0000000000 (Event Head)",
+        resourcePerson: "Mr. Amit Molke",
+        coordinator: "Ashish Ingle (CP), Divya Sangle (VCP) | Contact: +91 72185 22510",
         color: "#00f0ff"
     },
     "mastering-latex": {
@@ -23,8 +23,8 @@ const workshopData = {
         date: "Friday, March 27 & Saturday, March 28",
         schedule: "Day 1 (3:30 PM - 7:00 PM) - Basics of LaTeX, Day 2 (3:00 PM - 6:30 PM) - Advanced Typesetting.",
         fee: "Free",
-        resourcePerson: "ISTE Core Analysts",
-        coordinator: "Contact: +91-0000000000 (ISTE Coordinator)",
+        resourcePerson: "Dr.R.S.Mahamune",
+        coordinator: "Shrushti Deshmukh (CP), Vansh Jaiswal (VCP) | Contact: +91 74992 96763",
         color: "#ff00e5"
     },
     "ai-ml-bootcamp": {
@@ -34,8 +34,8 @@ const workshopData = {
         date: "March 25, 26, 27",
         schedule: "3 Days Workshop - Morning Sessions covering Data Processing, Deep Learning & Deployment.",
         fee: "₹ 100",
-        resourcePerson: "CSESA AI Mentors",
-        coordinator: "Contact: +91-0000000000 (CSESA Rep)",
+        resourcePerson: "Dr.Roshan Karwa",
+        coordinator: "Yash Mali (CP), Sakshi Deshmukh (VCP) | Contact: +91 88306 51820",
         color: "#a78bfa"
     },
     "vlsi-applications": {
@@ -45,8 +45,8 @@ const workshopData = {
         date: "Saturday, March 28",
         schedule: "Full day event including theoretical concepts, Cadence Lab hands-on, and 1 Hr Lunch.",
         fee: "₹ 100",
-        resourcePerson: "ESSA Embedded Faculty Working Group",
-        coordinator: "Contact: +91-0000000000 (ESSA Coordinator)",
+        resourcePerson: "Pranav Kheldar",
+        coordinator: "Pranav Jadhav (CP), Pranjal Patil (WCP) | Contact: +91 73509 74162",
         color: "#60a5fa"
     },
     "agentic-ai": {
@@ -56,8 +56,8 @@ const workshopData = {
         date: "Saturday, March 28",
         schedule: "Session starts at 10 AM, covering LLMs, Agent Architectures using Langchain, and live bot deployments.",
         fee: "₹ 100",
-        resourcePerson: "ACM Experts",
-        coordinator: "Contact: +91-0000000000 (ACM Head)",
+        resourcePerson: "Nakul Deshmukh",
+        coordinator: "Satyam Mishra (CP), Deep Rathod (WCP) | Contact: +91 91129 58683",
         color: "#22c55e"
     },
     "electric-vehicle": {
@@ -67,8 +67,8 @@ const workshopData = {
         date: "Friday, March 27 & Saturday, March 28",
         schedule: "2 Days Session (09:00 AM - 03:00 PM on Day 1, 08:00 AM - 02:00 PM on Day 2).",
         fee: "₹ 150",
-        resourcePerson: "IEI_ELPO Engineers",
-        coordinator: "Contact: +91-0000000000 (IEI Coordinator)",
+        resourcePerson: "Chetan Tajane",
+        coordinator: "Tejas Pande, Dipali Purane | Contact: +91 74981 30919",
         color: "#f59e0b"
     },
     "cybersecurity": {
@@ -78,8 +78,8 @@ const workshopData = {
         date: "Friday, March 27",
         schedule: "Session runs through the afternoon, spanning network basics to advanced penetrations with a 30m break.",
         fee: "₹ 50",
-        resourcePerson: "ITSA Security Experts",
-        coordinator: "Contact: +91-0000000000 (ITSA Secretary)",
+        resourcePerson: "Riya Dangra",
+        coordinator: "Sanchit Dangra (CP), Sakshi Rajankar (WCP) | Contact: +91 93093 91688",
         color: "#ef4444"
     },
     "web-development": {
@@ -89,8 +89,8 @@ const workshopData = {
         date: "Friday, March 27 & Saturday, March 28",
         schedule: "Day 1 (2:30 PM - 7:00 PM) Frontend Basics, Day 2 (09:00 AM - 01:00 PM) Backend integration.",
         fee: "₹ 100",
-        resourcePerson: "E-CELL Web Experts",
-        coordinator: "Contact: +91-0000000000 (E-CELL Head)",
+        resourcePerson: "DEVESH BADGUJAR",
+        coordinator: "Rutuja Deshmukh, Nihal Kankal | Contact: +91 87678 19508",
         color: "#3b82f6"
     },
     "autodesk": {
@@ -101,7 +101,7 @@ const workshopData = {
         schedule: "11:00 AM to 02:30 PM on Day 1 & 2. 02:00 PM to 06:00 PM on Day 4.",
         fee: "₹ 100",
         resourcePerson: "IEI_MECH Professionals",
-        coordinator: "Contact: +91-0000000000 (MECH Head)",
+        coordinator: "Shrinit Chavan | Contact: +91 77749 00204",
         color: "#10b981"
     }
 };
