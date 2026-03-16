@@ -35,7 +35,7 @@ const Workshops = () => {
     { id: "cybersecurity", name: "Cybersecurity Workshop", image: Cyber, fee: "₹ 50" },
     { id: "web-development", name: "Web Development Workshop", image: Web, fee: "₹ 100" },
     { id: "autodesk", name: "Autodesk Workshop", image: Autodesk, fee: "₹ 100" },
-    { id: "esp32-raspberry-pi", name: "Prototype to Product: ESP32 & Raspberry Pi", image: IEEE, fee: "₹ 250" }
+    { id: "esp32-raspberry-pi", name: "Prototype to Product: ESP32 & Raspberry Pi", image: IEEE, fee: "₹ 50 / 250" }
   ];
 
   const handleWorkshopClick = (workshopId) => {

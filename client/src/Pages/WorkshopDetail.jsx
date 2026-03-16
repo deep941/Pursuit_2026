@@ -106,11 +106,11 @@ const workshopData = {
     },
     "esp32-raspberry-pi": {
         name: "Prototype to Product: ESP32 & Raspberry Pi",
-        overview: "Learn the fundamentals of IoT using ESP32 and Raspberry Pi. Build real-world prototypes and transition them into viable products. (Open for team registrations up to 4 members!)",
+        overview: "Learn the fundamentals of IoT using ESP32 and Raspberry Pi. Build real-world prototypes and transition them into viable products. (Open for team registrations up to 5 members!)",
         time: "10:00 AM - 04:00 PM",
         date: "Saturday, March 28",
         schedule: "Full day event including theoretical concepts, hardware hands-on, and prototyping.",
-        fee: "₹ 250 (Per Team)",
+        fee: "₹ 50 (Solo) / ₹ 250 (Team)",
         resourcePerson: "Dr. D. D. Nawgaje Sir",
         coordinator: "Soham Bhole | Contact: +91 74982 53034",
         color: "#f59e0b"

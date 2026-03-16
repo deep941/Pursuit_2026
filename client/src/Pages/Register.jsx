@@ -123,6 +123,7 @@ const Register = () => {
     teamMembers: [
       { name: "", email: "", phone: "" },
       { name: "", email: "", phone: "" },
+      { name: "", email: "", phone: "" },
       { name: "", email: "", phone: "" }
     ]
   });
@@ -130,8 +131,17 @@ const Register = () => {
 
   // Helper to get current configuration
   const currentConfig = WORKSHOP_FORMS[formData.workshop] || WORKSHOP_FORMS["DEFAULT"];
-  const currentFee = currentConfig.fee;
-  const currentQr = currentConfig.qrCode;
+  let currentFee = currentConfig.fee;
+  let currentQr = currentConfig.qrCode;
+
+  // Dynamic fee calculation for ESP32
+  if (formData.workshop === "Prototype to Product: ESP32 & Raspberry Pi") {
+    const hasTeamMembers = formData.teamMembers.some(m => m.name.trim() !== "");
+    if (!hasTeamMembers) {
+      currentFee = "₹ 50";
+      currentQr = Qr50;
+    }
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -384,7 +394,8 @@ const Register = () => {
               <>
                 <div className="auth-section-title">Team Members (Optional)</div>
                 <p className="auth-subtext" style={{ fontSize: '12px', textAlign: 'center', marginBottom: '15px', marginTop: '-15px' }}>
-                  A team can have up to 4 members. You are the Team Leader (Member 1). Add up to 3 more members below.
+                  A team can have up to 5 members. You are the Team Leader (Member 1). Add up to 4 more members below.<br />
+                  <span style={{ color: '#ffdd57' }}>Fee is ₹ 50 for Individuals and ₹ 250 for a Team.</span> Add a team member's name below to automatically switch to Team Registration.
                 </p>
                 {formData.teamMembers.map((member, index) => (
                   <div key={index} style={{ marginBottom: "20px", padding: "15px", background: "rgba(255,255,255,0.02)", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)" }}>
