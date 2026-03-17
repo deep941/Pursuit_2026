@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import dns from "dns";
 import Registration from "./models/Registration.js";
 import Contact from "./models/Contact.js";
+import Accommodation from "./models/Accommodation.js";
 
 // Bypass local/ISP DNS blocks for MongoDB SRV records
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
@@ -100,6 +101,35 @@ app.post("/api/contact", async (req, res) => {
     } catch (error) {
         console.error("Contact endpoint error:", error);
         res.status(500).json({ error: "Server error during contact submission" });
+    }
+});
+
+// POST: Accommodation form submission
+app.post("/api/accommodation", async (req, res) => {
+    try {
+        const { name, college, date, gender } = req.body;
+
+        if (!name || !college || !date || !gender) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
+
+        const newAccommodation = new Accommodation({ name, college, date, gender });
+        await newAccommodation.save();
+
+        res.status(201).json({ message: "Accommodation requested successfully!", data: newAccommodation });
+    } catch (error) {
+        console.error("Accommodation endpoint error:", error);
+        res.status(500).json({ error: "Server error during accommodation submission" });
+    }
+});
+
+// GET: Fetch all accommodations
+app.get("/api/accommodations", async (req, res) => {
+    try {
+        const records = await Accommodation.find().sort({ createdAt: -1 });
+        res.status(200).json(records);
+    } catch (error) {
+        res.status(500).json({ error: "Server error fetching accommodations" });
     }
 });
 
