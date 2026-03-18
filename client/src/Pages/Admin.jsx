@@ -8,42 +8,56 @@ import bgVideo from "../assets/bgpursuit.webm";
 const Admin = () => {
     const [registrations, setRegistrations] = useState([]);
     const [accommodations, setAccommodations] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [viewMode, setViewMode] = useState("dashboard"); // "dashboard" or "details"
     const [selectedCategory, setSelectedCategory] = useState(null); // Either a workshop name or "Stay"
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
-                
-                // Fetch registrations
-                const regRes = await fetch(`${baseUrl}/api/registrations`);
-                if (!regRes.ok) throw new Error("Failed to fetch registrations");
-                const regData = await regRes.json();
-                
-                // Fetch accommodations
-                const accRes = await fetch(`${baseUrl}/api/accommodations`);
-                let accData = [];
-                if (accRes.ok) {
-                    accData = await accRes.json();
-                } else {
-                    console.warn("Failed to fetch accommodations");
-                }
-                
-                setRegistrations(regData);
-                setAccommodations(accData);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+    // Authentication states
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [passwordInput, setPasswordInput] = useState("");
 
-        fetchData();
-    }, []);
+    const handleLogin = async (e) => {
+        if (e) e.preventDefault();
+        setLoading(true);
+        setError(null);
+        try {
+            const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+            
+            // Fetch registrations
+            const regRes = await fetch(`${baseUrl}/api/registrations`, {
+                headers: { "x-admin-password": passwordInput }
+            });
+            
+            if (regRes.status === 401) {
+                throw new Error("Invalid Administrator Password");
+            }
+            if (!regRes.ok) throw new Error("Failed to fetch registrations");
+            const regData = await regRes.json();
+            
+            // Fetch accommodations
+            const accRes = await fetch(`${baseUrl}/api/accommodations`, {
+                headers: { "x-admin-password": passwordInput }
+            });
+            let accData = [];
+            if (accRes.ok) {
+                accData = await accRes.json();
+            } else {
+                console.warn("Failed to fetch accommodations");
+            }
+            
+            setRegistrations(regData);
+            setAccommodations(accData);
+            setIsAuthenticated(true);
+        } catch (err) {
+            setError(err.message);
+            setIsAuthenticated(false);
+        } finally {
+            setLoading(false);
+        }
+    };
+
 
     const workshopNames = [
         "Mastering LaTeX:Type Smart, Not Hard",
@@ -264,6 +278,41 @@ const Admin = () => {
         );
     };
 
+    if (!isAuthenticated) {
+        return (
+            <section className="admin-section auth-section">
+                <video className="gallery-bg-video" src={bgVideo} autoPlay loop muted playsInline />
+                <button className="auth-back" type="button" onClick={() => navigate("/")} style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 100 }}>
+                    <FaArrowLeft /> Exit
+                </button>
+                <div className="auth-wrapper" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div className="auth-card">
+                        <div className="auth-card-header" style={{ justifyContent: 'center' }}>
+                            <h2 className="auth-heading">Admin Login</h2>
+                        </div>
+                        <form onSubmit={handleLogin} className="auth-form">
+                            <div className="form-group">
+                                <label className="auth-label">Administrator Password</label>
+                                <input
+                                    type="password"
+                                    className="auth-input"
+                                    placeholder="Enter System Password"
+                                    value={passwordInput}
+                                    onChange={(e) => setPasswordInput(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            {error && <p style={{ color: '#ff4d4d', textAlign: 'center', marginBottom: '15px' }}>{error}</p>}
+                            <button type="submit" className="auth-button primary" disabled={loading}>
+                                {loading ? "VERIFYING..." : "ACCESS SYSTEM"}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="admin-section auth-section">
             <video
@@ -295,7 +344,7 @@ const Admin = () => {
                         >
                             EXPORT DATA
                         </button>
-                        <button className="admin-btn" onClick={() => window.location.reload()}>
+                        <button className="admin-btn" onClick={() => handleLogin()}>
                             REFRESH
                         </button>
                         <button 

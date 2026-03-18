@@ -27,7 +27,7 @@ const Workshops = () => {
 
   const workshopList = [
     { id: "cloud-byte", name: "Cloud Byte", image: Cloud, fee: "₹ 49" },
-    { id: "mastering-latex", name: "Mastering LaTeX:Type Smart, Not Hard", image: Latex, fee: "Free" },
+    { id: "mastering-latex", name: "Mastering LaTeX:Type Smart, Not Hard", image: Latex, fee: "Entry Full" },
     { id: "ai-ml-bootcamp", name: "AI/ML Bootcamp", image: AIML, fee: "₹ 100" },
     { id: "vlsi-applications", name: "Introduction to VLSI and Its Applications", image: VLSI, fee: "₹ 60" },
     { id: "agentic-ai", name: "Introduction to Agentic Ai", image: AI, fee: "₹ 100" },

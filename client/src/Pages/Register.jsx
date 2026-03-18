@@ -190,6 +190,11 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (formData.workshop === "Mastering LaTeX:Type Smart, Not Hard") {
+      alert("Registration for Mastering LaTeX is closed as entries are full.");
+      return;
+    }
+
     if (isSubmitting) return;
     setIsSubmitting(true);
 
@@ -375,7 +380,7 @@ const Register = () => {
                   required
                 >
                   <option value="">Select Option</option>
-                  <option value="Mastering LaTeX:Type Smart, Not Hard">Mastering LaTeX:Type Smart, Not Hard</option>
+                  <option value="Mastering LaTeX:Type Smart, Not Hard" disabled>Mastering LaTeX:Type Smart, Not Hard (Entry Full)</option>
                   <option value="AI/ML Bootcamp">AI/ML Bootcamp</option>
                   <option value="Introduction to VLSI and Its Applications">Introduction to VLSI and Its Applications</option>
                   <option value="Introduction to Agentic Ai">Introduction to Agentic Ai</option>

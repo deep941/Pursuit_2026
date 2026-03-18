@@ -25,7 +25,8 @@ const workshopData = {
         fee: "Free",
         resourcePerson: "Dr.R.S.Mahamune",
         coordinator: "Shrushti Deshmukh (CP), Vansh Jaiswal (VCP) | Contact: +91 74992 96763",
-        color: "#ff00e5"
+        color: "#ff00e5",
+        isFull: true
     },
     "ai-ml-bootcamp": {
         name: "AI/ML Bootcamp",
@@ -195,13 +196,23 @@ const WorkshopDetail = () => {
                     </div>
 
                     <div className="ws-footer">
-                        <button
-                            className="ws-register-btn"
-                            onClick={handleRegister}
-                            style={{ background: workshop.color, boxShadow: `0 0 20px ${workshop.color}60` }}
-                        >
-                            REGISTER NOW
-                        </button>
+                        {workshop.isFull ? (
+                            <button
+                                className="ws-register-btn"
+                                disabled
+                                style={{ background: "gray", cursor: "not-allowed", boxShadow: "none" }}
+                            >
+                                ENTRY FULL
+                            </button>
+                        ) : (
+                            <button
+                                className="ws-register-btn"
+                                onClick={handleRegister}
+                                style={{ background: workshop.color, boxShadow: `0 0 20px ${workshop.color}60` }}
+                            >
+                                REGISTER NOW
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

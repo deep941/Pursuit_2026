@@ -28,6 +28,18 @@ mongoose
     .catch((err) => console.error("MongoDB connection error:", err));
 
 // Routes
+
+// Admin Auth Middleware
+const adminAuth = (req, res, next) => {
+    const pwd = req.headers['x-admin-password'];
+    const validPwd = process.env.ADMIN_PASSWORD || 'pursuitadmin2026';
+    if (pwd === validPwd) {
+        next();
+    } else {
+        res.status(401).json({ error: "Unauthorized access" });
+    }
+};
+
 // POST: Register a user
 app.post("/api/register", async (req, res) => {
     try {
@@ -76,7 +88,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 // GET: Fetch all registrations (optional, for admin)
-app.get("/api/registrations", async (req, res) => {
+app.get("/api/registrations", adminAuth, async (req, res) => {
     try {
         const records = await Registration.find().sort({ createdAt: -1 });
         res.status(200).json(records);
@@ -124,7 +136,7 @@ app.post("/api/accommodation", async (req, res) => {
 });
 
 // GET: Fetch all accommodations
-app.get("/api/accommodations", async (req, res) => {
+app.get("/api/accommodations", adminAuth, async (req, res) => {
     try {
         const records = await Accommodation.find().sort({ createdAt: -1 });
         res.status(200).json(records);
